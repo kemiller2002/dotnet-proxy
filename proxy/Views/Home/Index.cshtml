@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+
+    iframe {
+        width:90%;
+        height:90%;
+        border: thin solid lightgray;
+    }
+
+</style>
+
+<script>
+
+    function inject(item) {
+        let x = item;
+        let y = (x.contentWindow || x.contentDocument);
+        if (y.document) y = y.document;
+        y.body.style.backgroundColor = "lightgreen";
+    }
+
+</script>
+
+
+<iframe src="/api" id="meta" onload="inject(this)">
+</iframe>

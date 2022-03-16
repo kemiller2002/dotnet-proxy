@@ -1,0 +1,54 @@
+/*
+        [HttpGet("{*path}")]
+        public async Task Get(string path)
+        {
+            var request = WebRequest.Create($"https://{BaseUrl}/{path}");
+
+            GetHeaders(BaseUrl, path, request, Request.Headers);
+
+            var response = request.GetResponse();
+
+            var stream = response.GetResponseStream();
+
+            SetResponseHeaders(Response.Headers, response);
+
+            await stream.CopyToAsync(Response.Body);
+        }
+
+        [HttpPost("{*path}")]
+        public async Task Post(string path)
+        {
+
+            var request = WebRequest.Create($"https://{BaseUrl}/{path}");
+
+            GetHeaders(BaseUrl, path, request, Request.Headers);
+
+            request.Method = "POST";
+
+            await Request.Body.CopyToAsync(request.GetRequestStream());
+
+            var response = request.GetResponse();
+
+            SetResponseHeaders(Response.Headers, response);
+
+            var stream = response.GetResponseStream();
+
+            await stream.CopyToAsync(Response.Body);
+        }
+
+       static void GetHeaders(string baseUrl, string path, WebRequest request, IHeaderDictionary headers)
+        {
+            request.Headers.Clear();
+            headers
+                .Where(x => !SetKeys.Contains(x.Key))
+                .ToList()
+                .ForEach(x=>request.Headers.Add(x.Key, x.Value));
+
+            request.Headers.Add("Host",baseUrl);
+            request.Headers.Add("Origin",$"https://{baseUrl}");
+            request.Headers.Add("Referrer",$"https://{baseUrl}//{path}");
+        }
+
+
+
+*/
